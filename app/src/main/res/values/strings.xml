@@ -1,9 +1,3 @@
 <resources>
-    <string name="app_name">Tarea</string>
-    <string name="btn_ingresar">INGRESAR</string>
-    <string name="btn_modificar">MODIFICAR</string>
-    <string name="hint_tilDesc">Descripción</string>
-    <string name="hint_tilTitulo">Título tarea</string>
-    <string name="btn_filtrar">FILTRAR</string>
-    <string name="hint_tilBuscar">Buscar</string>
+    <string name="app_name">Ev2AppMovil</string>
 </resources>
