@@ -6,4 +6,8 @@
     <string name="hint_tilTitulo">Título tarea</string>
     <string name="btn_filtrar">FILTRAR</string>
     <string name="hint_tilBuscar">Buscar</string>
+    <string name="error_Titulo">ingrese un titulo</string>
+    <string name="error_Desc">ingrese una descripcion</string>
+    <string name="error_Validacion">faltan datos</string>
+    <string name="error_NoExiste">La tarea no existe</string>
 </resources>
