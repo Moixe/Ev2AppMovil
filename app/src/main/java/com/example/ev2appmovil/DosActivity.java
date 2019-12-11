@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 
 public class DosActivity extends AppCompatActivity {
@@ -34,6 +35,7 @@ public class DosActivity extends AppCompatActivity {
         eventos();
         leer();
         adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_1, lasTareas);
+        Collections.sort(lasTareas);
         lstTareas.setAdapter(adaptador);
 
     }
@@ -51,7 +53,7 @@ public class DosActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 lasTareas.clear();
-                SharedPreferences p = getSharedPreferences("Tareas", Context.MODE_PRIVATE);
+                SharedPreferences p = getSharedPreferences(getString(R.string.SP_Tareas), Context.MODE_PRIVATE);
                 Map<String, ?> claves = p.getAll();
 
                 if (tilBusqueda.getText().toString().isEmpty()) {
@@ -65,34 +67,44 @@ public class DosActivity extends AppCompatActivity {
                         }
                     }
                     if (val == 0) {
-                        lasTareas.add("no hay registro");
+                        lasTareas.add(getString(R.string.no_existe));
                     }
                 }
+                Collections.sort(lasTareas);
                 lstTareas.setAdapter(adaptador);
+
             }
         });
 
         lstTareas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view,int i, long l) {
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                SharedPreferences p = getSharedPreferences("Tareas", Context.MODE_PRIVATE);
+                SharedPreferences p = getSharedPreferences(getString(R.string.SP_Tareas), Context.MODE_PRIVATE);
+                final SharedPreferences.Editor editarArchivo = p.edit();
+                final String texto = lasTareas.get(i);
+                String[] parts = texto.split(" : ");
 
-
-                Snackbar sb = Snackbar.make(view, "este es un mensaje" + i + l , Snackbar.LENGTH_LONG);
-                sb.setAction("aceptar", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-
-                            }
-                        });
-                sb.show();
-
-
-
+                final String keyDel = parts[0];
+                final String descDel = parts[1];
+                editarArchivo.remove(keyDel);
                 lasTareas.remove(i);
+                editarArchivo.apply();
+
+                Snackbar sb = Snackbar.make(view, keyDel + " " + getString(R.string.msg_eliminado), Snackbar.LENGTH_LONG);
+                sb.setAction(getString(R.string.deshacer), new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                      editarArchivo.putString(keyDel,descDel);
+                      lasTareas.add(texto);
+                       editarArchivo.commit();
+                        Collections.sort(lasTareas);
+                        lstTareas.setAdapter(adaptador);
+                    }
+                });
+                sb.show();
+                Collections.sort(lasTareas);
                 lstTareas.setAdapter(adaptador);
-              //  Toast.makeText(DosActivity.this,"click" + lasTareas.remove(i), Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
@@ -100,7 +112,7 @@ public class DosActivity extends AppCompatActivity {
 
 
     public void leer() {
-        SharedPreferences p = getSharedPreferences("Tareas", Context.MODE_PRIVATE);
+        SharedPreferences p = getSharedPreferences(getString(R.string.SP_Tareas), Context.MODE_PRIVATE);
 
         Map<String, ?> claves = p.getAll();
         for (Map.Entry<String, ?> entrada : claves.entrySet()) {

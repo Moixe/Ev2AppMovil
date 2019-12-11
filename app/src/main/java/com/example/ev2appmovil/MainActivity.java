@@ -40,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validacion()) {
-                    SharedPreferences p = getSharedPreferences("Tareas", Context.MODE_PRIVATE);
+                    SharedPreferences p = getSharedPreferences(getString(R.string.SP_Tareas), Context.MODE_PRIVATE);
                     SharedPreferences.Editor editarArchivo = p.edit();
                     editarArchivo.putString(tilTitulo.getText().toString(), tilDesc.getText().toString());
                     editarArchivo.commit();
                     tilTitulo.setText("");
                     tilDesc.setText("");
-                    Toast.makeText(getApplication(), "registro exitoso", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplication(),R.string.registro_exitoso, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validacion()) {
-                    SharedPreferences p = getSharedPreferences("Tareas", Context.MODE_PRIVATE);
+                    SharedPreferences p = getSharedPreferences(getString(R.string.SP_Tareas), Context.MODE_PRIVATE);
                     Map<String, ?> claves = p.getAll();
                     int toast = 0;
                     for (Map.Entry<String, ?> entrada : claves.entrySet()) {
@@ -66,11 +66,12 @@ public class MainActivity extends AppCompatActivity {
                             tilTitulo.setText("");
                             tilDesc.setText("");
                             toast = 1;
+                            Toast.makeText(getApplication(), R.string.msg_modificacion, Toast.LENGTH_SHORT).show();
                             break;
                         }
                     }
                     if (1 != toast)
-                        Toast.makeText(getApplication(),R.string.error_NoExiste, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplication(),R.string.error_NoExiste, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (validacion) {
         } else {
-            Toast.makeText(getApplication(), R.string.error_Validacion, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplication(), R.string.error_Validacion, Toast.LENGTH_SHORT).show();
         }
         return validacion;
     }

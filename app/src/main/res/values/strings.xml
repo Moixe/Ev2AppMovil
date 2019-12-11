@@ -10,4 +10,10 @@
     <string name="error_Desc">ingrese una descripcion</string>
     <string name="error_Validacion">faltan datos</string>
     <string name="error_NoExiste">La tarea no existe</string>
+    <string name="no_existe">No hay registro</string>
+    <string name="SP_Tareas">Tareas</string>
+    <string name="deshacer">Deshacer</string>
+    <string name="registro_exitoso">registro exitoso</string>
+    <string name="msg_eliminado"> fue eliminada</string>
+    <string name="msg_modificacion">tarea modificada</string>
 </resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Task</string>
+    <string name="btn_ingresar">REGISTER</string>
+    <string name="btn_modificar">MODIFY</string>
+    <string name="hint_tilDesc">Description</string>
+    <string name="hint_tilTitulo">Task title</string>
+    <string name="btn_filtrar">FILTER</string>
+    <string name="hint_tilBuscar">Search</string>
+    <string name="error_Titulo">insert a title</string>
+    <string name="error_Desc">inset a description</string>
+    <string name="error_Validacion">data missing</string>
+    <string name="error_NoExiste">The task does not exist</string>
+    <string name="no_existe">No record</string>
+    <string name="SP_Tareas">Tasks</string>
+    <string name="deshacer">UNDO</string>
+    <string name="registro_exitoso">successful registration </string>
+    <string name="msg_eliminado"> was deleted</string>
+    <string name="msg_modificacion">modified task</string>
+</resources>
